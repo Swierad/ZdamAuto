@@ -1,0 +1,28 @@
+<form action="" method="get">
+
+{% extends "base.html" %}
+
+{% block content %}
+   Nazwa użytkownika: {{user}} <br>
+   Imię : {{user.first_name}} <br>
+   Nazwisko: {{user.last_name}}
+   Lokalizacja: {{user.wherefrom}} <br>
+   <br>
+   Moje oferty:
+
+{% for offer in offers %}
+
+        <tbody class="text-color-lighter">
+
+            {{offer}} <a href="{% url 'offer-update' offer.id %}"> edytuj ofertę</a> <a href="{% url 'offer-delete' offer.id %}"> usuń ofertę</a>
+
+
+        </tbody>
+
+        {% endfor %}
+
+
+
+{% endblock content %}
+
+</form>

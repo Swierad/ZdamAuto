@@ -1,0 +1,72 @@
+<form action="" method="post">
+
+{% extends "base.html" %}
+
+{% block content %}
+    {% if  offer.user|stringformat:'s'  == user.get_username|stringformat:'s'%}
+                        <a href="{% url 'offer-update' offer.id %}"> edytuj ofertę</a> <a href="{% url 'offer-delete' offer.id %}"> usuń ofertę</a>
+                        {% else %}
+                        {% endif %}
+<div class="offer">
+    <h1> {{offer.car_brand}} {{ offer.car_model }} </h1>
+    <h2> {{ offer.user }}</h2>
+<p> <a href="{% url 'offer-msg' offer.id %}">skontaktuj się z wystawiającym:</a></p>
+    <h3> {{ offer.price }}</h3>
+
+    <h3>Szczegóły:</h3>
+    <div id="offer_one">
+        Marka pojazdu: {{offer.car_brand}} <br>
+        Model pojazdu: {{offer.car_model}} <br>
+        kategoria: {{offer.get_category_display}} <br>
+        typ: {{offer.get_type_display}} <br>
+        kolor: {{offer.color}} <br>
+        Rok produkcji: {{offer.year_of_production}}
+
+    </div>
+    <div id="offer_two">
+        Rodzaj paliwa: {{offer.get_fuel_type_display}} <br>
+        Liczba drzwi: {{offer.doors_number}} <br>
+        liczba miejsc: {{offer.seats_number}} <br>
+        Przebieg: {{offer.car_mileage}} <br>
+        Pojemoność skokowa: {{offer.engine_capacity}} <br>
+    </div>
+
+
+    <div>
+       <h2> Opis:</h2>
+        {{ offer.description }}
+    </div>
+
+    <div id="equipe">
+       <h3> Wyposażenie:</h3>
+        <ul>
+        {% for i in offer.car_equipment.all %}
+
+        <li> {{ i.equip }} </li>
+
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
+<div class="bxslider">
+  <div><img src="{{offer.photos.url}}"> </div>
+{% if offer.photos_2.url != None %}
+     <div><img src="{{offer.photos_2.url}}"> </div>
+{% endif %}
+ {% if offer.photos_3.url != None %}
+     <div><img src="{{offer.photos_3.url}}"> </div>
+{% endif %}
+{% if offer.photos_4.url != None %}
+     <div><img src="{{offer.photos_4.url}}"> </div>
+{% endif %}
+{% if offer.photos_5.url != None %}
+     <div><img src="{{offer.photos_5.url}}"> </div>
+{% endif %}
+
+</div>
+
+{% endblock content %}
+
+</form>

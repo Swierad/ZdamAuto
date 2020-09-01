@@ -1,0 +1,4 @@
+<form method="post">{% csrf_token %}
+    <p>Czy jesteś pewien, że chcesz usunąć ofertę  {{ object.car_brand }} {{ object.car_model }}?</p>
+    <input type="submit" value="usuń">
+</form>

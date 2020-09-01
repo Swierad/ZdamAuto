@@ -1,0 +1,50 @@
+<form action="" method="get">
+
+{% extends "base.html" %}
+
+{% block content %}
+{% csrf_token %}
+    <form method = "get">
+
+        {{ offerFilter.form}}
+        <input type="submit" value="szukaj">
+    </form>
+    <table class="main">
+        <thead>
+            <tr>
+                <th class="col-1" width="25%"></th>
+                <th class="col-2" width="50%"></th>
+                <th class="col-3" width="25%"></th>
+            </tr>
+        </thead>
+        {% for i in r %}
+
+        <tbody class="text-color-lighter">
+
+            <tr>
+
+                    <td rowspan="2" class="image"><img src="{{i.photos.url}}" width="100%" alt="mapa"></td>
+                    <td class="col-1" height="30px"><a href={% url 'offer-details' i.id %}>{{i.car_brand}} {{ i.car_model }} </a></td>
+                    <td rowspan="3" class="col-6">{{i.price}} PLN</td>
+            </tr>
+            <tr>
+                <td class="row">rocznik: {{ i.year_of_production }}<br>{{ i.car_mileage }}km <br>{{ i.engine_capacity }}cm3 <br>{{ i.get_fuel_type_display }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+
+        </tbody>
+
+        {% endfor %}
+
+    </table>
+
+{% endblock content %}
+
+</form>
