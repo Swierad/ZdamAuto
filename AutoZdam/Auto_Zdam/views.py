@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView, FormView, UpdateView, DeleteVi
 from django.urls import reverse_lazy
 from .models import User, Offer, Equip
 from .forms import OfferForm, UserCreateForm, UserLoginForm, ContactForm
+from .tokens import user_tokenizer
 from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth.models import User as DjangoUser
@@ -13,7 +14,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from .filters import OfferFilter
-
+from django.conf import settings
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.core.mail import EmailMessage
+from django.template.loader import get_template
+from django.utils.encoding import force_bytes, force_text
+from django.contrib.auth.forms import AuthenticationForm
 
 
 
@@ -37,11 +43,59 @@ class AddOffer(LoginRequiredMixin, View):
         return render(request, "Auto_Zdam/offer_form.html", {"form": f})
 
 
-class UserCreateView(CreateView):
-    form_class = UserCreateForm
-    template_name = "Auto_Zdam/user_create.html"
-    success_url = reverse_lazy("main")
+class UserCreate(View):
+    def get(self, request):
+        return render(request, "Auto_Zdam/register.html", { 'form': UserCreateForm() })
 
+ #   'first_name', 'last_name', 'wherefrom']
+    def post(self, request):
+        form = UserCreateForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            wherefrom = form.cleaned_data['wherefrom']
+            user = User.objects.create_user(email=email, password=password, first_name=first_name, last_name=last_name, wherefrom=wherefrom )
+            user.save()
+            user.is_active = False
+            user.save()
+            token = user_tokenizer.make_token(user)
+            user_id = urlsafe_base64_encode(force_bytes(user.id))
+            url = 'http://localhost:8000' + reverse('confirm_email', kwargs={'user_id': user_id, 'token': token})
+            message = get_template('Auto_Zdam/register_email.html').render({
+                'confirm_url': url
+            })
+            mail = EmailMessage('Django Survey Email Confirmation', message, to=[user.email],
+                                from_email='swierad@gmail.com')
+            mail.content_subtype = 'html'
+            mail.send()
+
+            return render(request, "Auto_Zdam/user_login.html", {
+                'form': AuthenticationForm(),
+                'message': f'A confirmation email has been sent to {user.email}. Please confirm to finish registering'
+            })
+
+        return render(request, 'survey/register.html', {'form': form})
+
+
+class ConfirmRegistrationView(View):
+    def get(self, request, user_id, token):
+        user_id = force_text(urlsafe_base64_decode(user_id))
+
+        user = User.objects.get(pk=user_id)
+
+        context = {
+            'form': UserLoginForm(),
+            'message': 'Registration confirmation error . Please click the reset password to generate a new confirmation email.'
+        }
+        if user and user_tokenizer.check_token(user, token):
+            user.is_active = True
+            user.save()
+            context['message'] = 'Registration complete. Please login'
+            return render(request, "Auto_Zdam/user_login.html", context)
+
+        return render(request, "Auto_Zdam/user_login.html", context)
 
 class EquipCreate(PermissionRequiredMixin, CreateView):
     permission_required = 'Auto_Zdam.add_equipe'
@@ -156,3 +210,5 @@ class MyView(View):
 
 
         return render(request, "Auto_Zdam/MyView.html", ctx)
+
+
