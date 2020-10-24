@@ -1,4 +1,15 @@
-<form method="post">{% csrf_token %}
-    <p>Czy jesteś pewien, że chcesz usunąć ofertę  {{ object.car_brand }} {{ object.car_model }}?</p>
-    <input type="submit" value="usuń">
+<form method="post">
+{% extends "base.html" %}
+{% block content %}
+
+
+
+  {% csrf_token %}
+    <p>Czy jesteś pewien, że chcesz usunąć ofertę  "{{ object.car_brand }} {{ object.car_model }}"?</p>
+    <button class="button is-danger">tak</button>
+    <button class="button is-link "><a class="txt_white" href="{% url 'main' %}">
+              nie</a></button>
+
+
+{% endblock content %}
 </form>

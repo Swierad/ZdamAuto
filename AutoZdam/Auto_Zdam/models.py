@@ -22,8 +22,8 @@ FUEL_TYPE = (
     (2, "diesel"),
     (3, "LPG"),
     (4, "benzyna/lpg"),
-    (4, "hybryda"),
-    (4, "elektryczny")
+    (5, "hybryda"),
+    (6, "elektryczny")
 )
 
 CATEGORY = (

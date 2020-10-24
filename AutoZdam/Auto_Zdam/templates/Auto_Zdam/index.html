@@ -4,46 +4,58 @@
 
 {% block content %}
 {% csrf_token %}
-    <form method = "get">
+<br>
 
+    <form method = "get">
         {{ offerFilter.form}}
         <input type="submit" value="szukaj">
     </form>
-    <table class="main">
-        <thead>
-            <tr>
-                <th class="col-1" width="25%"></th>
-                <th class="col-2" width="50%"></th>
-                <th class="col-3" width="25%"></th>
-            </tr>
-        </thead>
-        {% for i in r %}
 
-        <tbody class="text-color-lighter">
+  {% for i in r %}
+  <section class="section is-fullheight" id="prawnicy">
 
-            <tr>
+    <div class="box">
+<table class="main">
+    <thead>
+        <tr><th class="col-1" width="15%"></th>
+            <th class="col-2" width="25%"></th>
+            <th class="col-4" width="20%"></th>
+            <th class="col-5" width="25%"></th>
+            <th class="col-6" width="15%"></th>
+        </tr>
+    </thead>
 
-                    <td rowspan="2" class="image"><img src="{{i.photos.url}}" width="100%" alt="mapa"></td>
-                    <td class="col-1" height="30px"><a href={% url 'offer-details' i.id %}>{{i.car_brand}} {{ i.car_model }} </a></td>
-                    <td rowspan="3" class="col-6">{{i.price}} PLN</td>
-            </tr>
-            <tr>
-                <td class="row">rocznik: {{ i.year_of_production }} <br> {{ i.user.wherefrom}} <br>{{ i.car_mileage }}km <br>{{ i.engine_capacity }}cm3 <br>{{ i.get_fuel_type_display }}</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+<tbody class="text-color-lighter">
 
+    <tr>
+            <td></td>
+            <td rowspan="2" class="image"><a href={% url 'offer-details' i.id %}><img src="{{i.photos.url}}" width="100%" alt="mapa"> </a></td> 
 
-        </tbody>
+            <td class="col-2" height="30px">
+            <div class="content">
+              <a href={% url 'offer-details' i.id %}> &nbsp&nbsp {{i.car_brand}} {{ i.car_model }} <br> &nbsp&nbsp Cena: {{i.price}} PLN <br> &nbsp&nbsp rocznik: {{ i.year_of_production }} <br> &nbsp&nbsp lokalizacja: {{ i.user.wherefrom}} <br> &nbsp&nbsp przebieg: {{ i.car_mileage }}&nbspkm <br> &nbsp&nbsp pojemnośc silnika: {{ i.engine_capacity }}&nbspcm3 <br>&nbsp&nbsp rodzaj paliwa: {{ i.get_fuel_type_display }} </a></td>
+            </div>
+            <td rowspan="3" class="col-6">
+                <a> opis: <br> {{ i.description }}
+                </a>
+            </td>
+            <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+  </div>
 
-        {% endfor %}
-
-    </table>
+</section>
+{% endfor %}
 
 {% endblock content %}
 

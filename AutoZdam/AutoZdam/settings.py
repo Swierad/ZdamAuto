@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Auto_Zdam',
-
+    'widget_tweaks',
     'django_filters'
 
 
@@ -146,4 +146,3 @@ EMAIL_HOST_USER = 'swierad@gmail.com'
 EMAIL_HOST_PASSWORD = 'regulaminowy'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-

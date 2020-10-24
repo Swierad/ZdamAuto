@@ -1,12 +1,59 @@
 <html>
   <form action="" method="post">
-      {% extends "base.html" %}
+   {% extends "base.html" %}
 {% block content %}
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Wyślij">
+{% load widget_tweaks %}
+{% csrf_token %}
+
+
+<br>
+<br>
+<br>
+
+<table >
+    <thead>
+        <tr><th class="col-1" width="30%"></th>
+            <th class="col-2" width="40%"></th>
+            <th class="col-3" width="30%"></th>
+
+        </tr>
+    </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>
+                    <h1 class="title is-3 has-text-centered">Napisz wiadomość wystawiającemu</h1>
+
+                <div class="field">
+                  <label for="{{ form.description.id_for_label }}" class="label">treść wiadomości</label>
+                  <div class="control">
+                    <textarea class="textarea" placeholder="treść wiadomości" name="description" cols="40" rows="10" required id="id_description"></textarea>
+                  </div>
+                </div>
+
+                <div class="field">
+                            <label for="{{ form.price.id_for_label }}" class="label">
+                                proponowana kwota
+                            </label>
+                            <div class="control">
+                                <input class="input is-info" type="number" placeholder="proponowana kwota"  name="price" required id="id_price">
+                            </div>
+                </div>
+
+                <br>
+                <div class="field is-grouped">
+                  <div class="control">
+                    <button class="button is-link">wyślij wiadomość</button>
+                  </div>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
 
 {% endblock content %}
   </form>
-  . . .
+
 </html>

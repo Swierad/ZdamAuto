@@ -1,5 +1,5 @@
 import django_filters
-from .models import Offer
+from .models import Offer, User
 
 class OfferFilter(django_filters.FilterSet):
     class Meta:

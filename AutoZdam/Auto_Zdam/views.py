@@ -32,22 +32,22 @@ class AddOffer(LoginRequiredMixin, View):
 
     def get(self, request):
         form = OfferForm(request.user)
-        return render(request, "Auto_Zdam/offer_form.html", {"form": form})
+        current_user = request.user
+        user_id = current_user.id
+        return render(request, "Auto_Zdam/offer_form.html", {"form": form, "id": user_id})
     def post(self, request):
         f = OfferForm(request.user, request.POST, request.FILES)
         if f.is_valid():
             f.save()
-            return reverse_lazy("main")
-                #render(request, "Auto_Zdam/index.html")
-        print(f.errors)
-        return render(request, "Auto_Zdam/offer_form.html", {"form": f})
-
+        else:
+            print(f.errors)
+            return render(request, "Auto_Zdam/offer_form.html", {"form": f})
+        return redirect(reverse('main'))
 
 class UserCreate(View):
     def get(self, request):
         return render(request, "Auto_Zdam/register.html", { 'form': UserCreateForm() })
 
- #   'first_name', 'last_name', 'wherefrom']
     def post(self, request):
         form = UserCreateForm(request.POST)
         if form.is_valid():

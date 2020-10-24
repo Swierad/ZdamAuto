@@ -3,26 +3,62 @@
 {% extends "base.html" %}
 
 {% block content %}
-   Nazwa użytkownika: {{user}} <br>
-   Imię : {{user.first_name}} <br>
-   Nazwisko: {{user.last_name}}<br>
-   Lokalizacja: {{user.wherefrom}} <br>
-   <br><br>
-   Moje oferty:
-
-{% for offer in offers %}
-
-        <tbody class="text-color-lighter">
-
-            {{offer}} <a href="{% url 'offer-update' offer.id %}"> edytuj ofertę</a> <a href="{% url 'offer-delete' offer.id %}"> usuń ofertę</a> <br>
 
 
-        </tbody>
+<br>
+<br>
+<br>
+    <div class="box">
+      <article class="media">
+        <div class="media-content">
+          <div class="content">
+            <p>
 
-        {% endfor %}
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+              email: <strong>{{user}}</strong> <br>
+                  <span class="icon is-small is-left">
+                      <i class="fas fa-user-alt"></i>
+                  </span>
+              Imię : <strong>{{user.first_name}}</strong> <br>
+                  <span class="icon is-small is-left">  
+                      <i class="fas fa-user-alt"></i>
+                  </span>
+              Nazwisko: <strong>{{user.last_name}}</strong> <br>
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+              Lokalizacja: <strong>{{user.wherefrom}}</strong> <br>
 
 
 
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+<div class="box">
+      <article class="media">
+        <div class="media-content">
+          <div class="content">
+            <p>
+            <strong>Moje oferty:</strong>
+
+                <div class="content">
+                  <ol type="1">
+                    {% for offer in offers %}
+                      <li>{{offer}} <a href="{% url 'offer-update' offer.id %}"> edytuj ofertę | </a> <a href="{% url 'offer-delete' offer.id %}"> usuń ofertę</a> <br></li>
+                    {% endfor %}
+                  </ol>
+                </div>
+
+            </p>
+          </div>
+        </div>
+      </article>
+</div>
 {% endblock content %}
 
 </form>

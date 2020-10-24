@@ -1,5 +1,149 @@
 <form action="" method="post" enctype="multipart/form-data">
+   {% extends "base.html" %}
+{% block content %}
+
+  {% load widget_tweaks %}
+
   {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" value="Save">
+<br>
+<br>
+<br>
+
+
+
+  <h1 class="title is-3 has-text-centered">Zarejestruj się</h1>
+<br>
+<br>
+<br>
+
+ <table >
+       <thead>
+        <tr><th class="col-1" width="30%"></th>
+            <th class="col-2" width="60%"></th>
+            <th class="col-3" width="10%"></th>
+
+        </tr>
+    </thead>
+       <tbody>
+    <tr>
+        <td></td>
+    <td>
+
+<div class="box register_box">
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label for="{{ form.email.id_for_label }}" class="label">Email:</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded has-icons-left">
+          <input class="input" type="email" placeholder="Email" name="email" maxlength="254" required id="id_email">
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label for="{{ form.password.id_for_label }}" class="label"> Hasło: </label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded has-icons-left">
+          <input class="input" type="password" placeholder="***" name="password" maxlength="128" required id="id_password">
+          <span class="icon is-small is-left">
+            <i class="fas fa-key"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field-label is-normal">
+      <label for="{{ form.password2.id_for_label }}" class="label">Potwierdź hasło:</label>
+    </div>
+      <div class="field">
+        <p class="control is-expanded has-icons-left has-icons-right">
+          <input class="input" type="password" placeholder="***" name="password2" required id="id_password2">
+          <span class="icon is-small is-left">
+            <i class="fas fa-key"></i>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label for="{{ form.name.id_for_label }}" class="label">Imię:</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded has-icons-left">
+          <input class="input" type="text" placeholder="Jan" name="first_name" maxlength="30" id="id_first_name">
+          <span class="icon is-small is-left">
+            <i class="fas fa-user-alt"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field-label is-normal">
+      <label for="{{ form.surname.id_for_label }}" class="label">Naziwsko:</label>
+    </div>
+      <div class="field">
+        <p class="control is-expanded has-icons-left has-icons-right">
+          <input class="input" type="text" placeholder="Nowak" name="last_name" maxlength="150" id="id_last_name">
+          <span class="icon is-small is-left">
+            <i class="fas fa-user-alt"></i>
+          </span>
+
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label for="{{ form.wherefrom.id_for_label }}" class="label">Lokalizacja:</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded has-icons-left">
+          <input class="input" type="text" placeholder="Warszawa" name="wherefrom" maxlength="64" required id="id_wherefrom">
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+        </p>
+        <br>
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link">Zarejestruj</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+    </td>
+    <td></td>
+    </tr>
+    </tbody>
+    </table>
+
+
+{% endblock content %}
 </form>
+
+
+
+
+
+
+
