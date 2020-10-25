@@ -1,1 +1,1 @@
-web: gunicorn AutoZdam.wsgi
+web: gunicorn Auto_Zdam.wsgi
