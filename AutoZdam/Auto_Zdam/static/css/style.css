@@ -110,6 +110,48 @@ nav a:hover::before {
     margin: 0 0 0 302px;
 }
 
+.margin {
+	p.ex1 {
+
+	margin-left: 350px;
+}
+	}
+
+.table {
+	display: table;   /* Allow the centering to work */
+	margin: 0 auto;
+}
+
+.txt_white {
+	color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #txt_msg {
     margin: 0 0 0 302px;
 }
