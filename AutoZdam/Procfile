@@ -1,1 +1,0 @@
-web: gunicorn Auto_Zdam.wsgi
