@@ -1,8 +1,8 @@
-body {
+.body {
 	margin: 0;
 	background: aliceblue;
 	font-family: 'Work Sans', sans-serif;
-	font-weight: 800;send
+	font-weight: 800;send;
 }
 
 .container {

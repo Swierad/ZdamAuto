@@ -74,16 +74,27 @@ WSGI_APPLICATION = 'AutoZdam.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'HOST': '127.0.0.1',
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'auto_zdam',
+#        'USER': 'postgres',
+#        'PASSWORD': 'coderslab',
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'HOST': '127.0.0.1',
+        'HOST': 'ec2-52-73-199-211.compute-1.amazonaws.com',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'auto_zdam',
-        'USER': 'postgres',
-        'PASSWORD': 'coderslab',
+        'NAME': 'davi8n4js8730v',
+        'USER': 'guwiafjszdajmc',
+        'PASSWORD': 'e8307bea4b978b54f79b007eae01c028d0944b5ffaf9a028d7c57eba2ac3a016',
     }
 }
-
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -137,10 +148,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'poczta.o2.pl'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'swierad@gmail.com'
-EMAIL_HOST_PASSWORD = 'regulaminowy'
+EMAIL_HOST_USER = 'swierad-88@o2.pl'
+EMAIL_HOST_PASSWORD = 'umbridge'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 

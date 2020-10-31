@@ -67,7 +67,7 @@ class UserCreate(View):
                 'confirm_url': url
             })
             mail = EmailMessage('Django Survey Email Confirmation', message, to=[user.email],
-                                from_email='swierad@gmail.com')
+                                from_email='swierad-88@o2.pl')
             mail.content_subtype = 'html'
             mail.send()
 
@@ -147,8 +147,10 @@ class UserLogoutView(View):
         return redirect(reverse('main'))
 
 
-class OfferDetails(PermissionRequiredMixin, View):
-    permission_required = 'Auto_Zdam.view_offer'
+
+class OfferDetails(View):
+#    permission_required = 'Auto_Zdam.view_offer'
+#   PermissionRequiredMixin,
     login_url = reverse_lazy('user-login')
     def get(self, request, id):
         r = Offer.objects.get(id=id)
@@ -156,14 +158,14 @@ class OfferDetails(PermissionRequiredMixin, View):
             "offer": r,
         }
         return render(request, "Auto_Zdam/offer-details.html", ctx)
-    def post(self, request, id ):
-        msg = request.POST.get("msg")
-        send_mail('Masz nową wiadomość z poratlu AutoZdam', msg, 'autozdam@hush.com', ['swierad@gmail.com'], fail_silently = False)
-        r = Offer.objects.get(id=id)
-        ctx = {
-            "offer": r,
-        }
-        return render(request, "Auto_Zdam/offer-details.html", ctx)
+    #def post(self, request, id ):
+    #    msg = request.POST.get("msg")
+    #    send_mail('Masz nową wiadomość z poratlu AutoZdam', msg, 'swierad-88@o2.pl', ['swierad@gmail.com'], fail_silently = False)
+   #     r = Offer.objects.get(id=id)
+    #    ctx = {
+    #        "offer": r,
+   #     }
+  #      return render(request, "Auto_Zdam/offer-details.html", ctx)
 
 
 class OfferUpdate(UpdateView):
@@ -191,7 +193,7 @@ class ContactFormView(View):
             loged_user = request.user.email
             msg = f"Wiadomość od {loged_user} w sprawie ogłoszenia {r.car_brand} {r.car_model}: " \
                   f"{form}. Kwota proponowana przez komisanta {form_price}   "
-            send_mail(f'Auto_Zdam - masz nową wiadomość od {loged_user}', msg, 'autozdam@hush.com', ['swierad@gmail.com'], fail_silently = False)
+            send_mail(f'Auto_Zdam - masz nową wiadomość od {loged_user}', msg, 'swierad-88@o2.pl', ['swierad@gmail.com'], fail_silently = False)
             r = Offer.objects.get(id=id)
             ctx = {
                 "offer": r,
