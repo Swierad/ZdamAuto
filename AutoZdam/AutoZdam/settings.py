@@ -74,25 +74,16 @@ WSGI_APPLICATION = 'AutoZdam.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'HOST': '127.0.0.1',
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'auto_zdam',
-#        'USER': 'postgres',
-#        'PASSWORD': 'coderslab',
-#    }
-#}
-
 DATABASES = {
     'default': {
-        'HOST': 'ec2-52-73-199-211.compute-1.amazonaws.com',
+        'HOST': '127.0.0.1',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'davi8n4js8730v',
-        'USER': 'guwiafjszdajmc',
-        'PASSWORD': 'e8307bea4b978b54f79b007eae01c028d0944b5ffaf9a028d7c57eba2ac3a016',
+        'NAME': 'auto_zdam',
+        'USER': 'postgres',
+        'PASSWORD': 'coderslab',
     }
 }
+
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 

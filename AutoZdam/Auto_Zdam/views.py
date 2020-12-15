@@ -48,6 +48,11 @@ class UserCreate(View):
     def get(self, request):
         return render(request, "Auto_Zdam/register.html", { 'form': UserCreateForm() })
 
+
+#url for localhost = 'http://localhost:8000' + reverse('confirm_email', kwargs={'user_id': user_id, 'token': token})
+#            message = get_template('Auto_Zdam/register_email.html').render({
+#                'confirm_url': url
+#            })
     def post(self, request):
         form = UserCreateForm(request.POST)
         if form.is_valid():
@@ -62,7 +67,7 @@ class UserCreate(View):
             user.save()
             token = user_tokenizer.make_token(user)
             user_id = urlsafe_base64_encode(force_bytes(user.id))
-            url = 'http://localhost:8000' + reverse('confirm_email', kwargs={'user_id': user_id, 'token': token})
+            url = 'https://autozdam.herokuapp.com' + reverse('confirm_email', kwargs={'user_id': user_id, 'token': token})
             message = get_template('Auto_Zdam/register_email.html').render({
                 'confirm_url': url
             })
