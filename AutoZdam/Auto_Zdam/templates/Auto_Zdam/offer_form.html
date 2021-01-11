@@ -1,456 +1,428 @@
 <form action="" method="post" enctype="multipart/form-data">
-   {% extends "base.html" %}
+  {% extends "base.html" %}
 {% block content %}
 
-  {% load widget_tweaks %}
+ {% load widget_tweaks %}
 
-  {% csrf_token %}
+ {% csrf_token %}
 
+<br><br>
+
+
+
+ <div class="columns is-desktop">
+  <div class="column"></div>
+  <div class="column is-two-thirds">
 
 
  <input type="hidden" name="user" value="{{id}}" id="id_user">
 
-<div class="box">
-  <article class="media">
-
-   <table >
-       <thead>
-        <tr><th class="col-1" width="15%"></th>
-            <th class="col-2" width="75%"></th>
-
-        </tr>
-    </thead>
-       <tbody>
-    <tr>
-        <td></td>
-    <td>
-<br>
-<br>
-<br>
-        <h1 class="title is-3 has-text-centered">Wprowadź dane wystawianego pojazdu </h1>
-
-
-<br>
-<br>
-<br>
-    <div class="media-content">
-      <div class="content">
-        <p>
-          <strong>Informacje ogólne</strong>
-
-
-
-
-
-          <div class="field">
-            <label for="{{ form.price.id_for_label }}" class="label">
-                Cena
-            </label>
-            <div class="control">
-                <input class="input is-info" type="number" placeholder="wskaż cenę"  name="price">
-            </div>
-          </div>
-          <br>
-
-         <div class="field">
-           <label for="{{ form.car_brand.id_for_label }}" class="label">
-                        Marka
-           </label>
+ <div class="box">
+  <h1 class="title is-3 has-text-centered">Wprowadź dane wystawianego pojazdu </h1>
+  <div class='box'>
+      <strong>Informacje ogólne</strong>
+      <br><br>
+      <div class="field">
+          <label for="{{ form.price.id_for_label }}" class="label">
+              Cena
+          </label>
           <div class="control">
-            <input class="input is-info" type="text" placeholder="wskaż markę pojazdu"  name="car_brand">
-          </div>
-         </div>
-
-        <div class="field">
-           <label for="{{ form.car_model.id_for_label }}" class="label" >
-                        Model
-           </label>
-          <div class="control">
-            <input class="input is-info" type="text" placeholder="wskaż model pojazdu" name="car_model">
+              <input class="input is-info" type="number" placeholder="wskaż cenę"  name="price">
           </div>
         </div>
-         <br>
+        <br>
 
-        <div class="field">
-           <label for="{{ form.category.id_for_label }}" class="label">
-                        Kategoria
-           </label>
+       <div class="field">
+         <label for="{{ form.car_brand.id_for_label }}" class="label">
+                      Marka
+         </label>
+        <div class="control">
+          <input class="input is-info" type="text" placeholder="wskaż markę pojazdu"  name="car_brand">
+        </div>
+       </div>
+
+      <div class="field">
+         <label for="{{ form.car_model.id_for_label }}" class="label" >
+                      Model
+         </label>
+        <div class="control">
+          <input class="input is-info" type="text" placeholder="wskaż model pojazdu" name="car_model">
+        </div>
+      </div>
+       <br>
+
+      <div class="field">
+         <label for="{{ form.category.id_for_label }}" class="label">
+                      Kategoria
+         </label>
+        <div class="select">
+        <select name="category">
+          <option value="1">osobowe</option>
+          <option value="2">dostawcze</option>
+          <option value="3">motocykl</option>
+        </select>
+      </div>
+      </div>
+
+
+      <div class="field">
+         <label for="{{ form.category.id_for_label }}" class="label">
+                      Typ
+         </label>
+        <div class="select">
+        <select name="type">
+          <option value="1">SUV</option>
+          <option value="2">sedan</option>
+          <option value="3">hatchback</option>
+        </select>
+      </div>
+      </div>
+       <br>
+
+      <div class="field">
+          <label for="{{ form.fuel_type.id_for_label }}" class="label">
+              Kategoria
+          </label>
           <div class="select">
-          <select name="category">
-            <option value="1">osobowe</option>
-            <option value="2">dostawcze</option>
-            <option value="3">motocykl</option>
-          </select>
-        </div>
-        </div>
-
-
-        <div class="field">
-           <label for="{{ form.category.id_for_label }}" class="label">
-                        Typ
-           </label>
-          <div class="select">
-          <select name="type">
-            <option value="1">SUV</option>
-            <option value="2">sedan</option>
-            <option value="3">hatchback</option>
-          </select>
-        </div>
-        </div>
-         <br>
-
-        <div class="field">
-            <label for="{{ form.fuel_type.id_for_label }}" class="label">
-                Kategoria
-            </label>
-            <div class="select">
-                <select name="fuel_type">
-                    <option value="1">benzyna</option>
-                    <option value="2">diesel</option>
-                    <option value="3">LPG</option>
-                    <option value="4">benzyna/lpg</option>
-                    <option value="5">hybryda</option>
-                    <option value="6">elektryczny</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="field">
-           <label for="{{ form.doors_number_for_label }}" class="label">
-                        Liczba drzwi
-           </label>
-          <div class="select">
-          <select name="doors_number">
-            <option value="1">3</option>
-            <option value="2">5</option>
-          </select>
+              <select name="fuel_type">
+                  <option value="1">benzyna</option>
+                  <option value="2">diesel</option>
+                  <option value="3">LPG</option>
+                  <option value="4">benzyna/lpg</option>
+                  <option value="5">hybryda</option>
+                  <option value="6">elektryczny</option>
+              </select>
           </div>
+      </div>
+
+      <div class="field">
+         <label for="{{ form.doors_number_for_label }}" class="label">
+                      Liczba drzwi
+         </label>
+        <div class="select">
+        <select name="doors_number">
+          <option value="1">3</option>
+          <option value="2">5</option>
+        </select>
         </div>
+      </div>
 
 
-        <div class="field">
-           <label for="{{ seats_number_number_for_label }}" class="label">
-                        Liczba siedzeń
-           </label>
-          <div class="select">
-          <select name="seats_number">
-          <option value="1">2</option>
+      <div class="field">
+         <label for="{{ seats_number_number_for_label }}" class="label">
+                      Liczba siedzeń
+         </label>
+        <div class="select">
+        <select name="seats_number">
+        <option value="1">2</option>
 
-          <option value="2">4</option>
+        <option value="2">4</option>
 
-          <option value="3">5</option>
+        <option value="3">5</option>
 
-          <option value="4">6</option>
-          </select>
-          </div>
+        <option value="4">6</option>
+        </select>
         </div>
-         <br>
+      </div>
+       <br>
 
-<div class="field">
-   <label for="{{ form.engine_capacity.id_for_label }}" class="label">
-                pojemność silnika
-   </label>
-  <div class="control">
-    <input class="input is-info" type="number" placeholder="wskaż pojemność silnika w cm3"  name="engine_capacity">
+      <div class="field">
+          <label for="{{ form.engine_capacity.id_for_label }}" class="label">
+                      pojemność silnika
+          </label>
+      <div class="control">
+          <input class="input is-info" type="number" placeholder="wskaż pojemność silnika w cm3"  name="engine_capacity">
+      </div>
+      </div>
+      <br>
+
+      <div class="field">
+         <label for="{{ form.year_of_production.id_for_label }}" class="label">
+                      rok produkcji
+         </label>
+        <div class="control">
+          <input class="input is-info" type="number" placeholder="wskaż rok produkcji pojazdu"  name="year_of_production">
+        </div>
+      </div>
+       <br>
+
+      <div class="field">
+         <label for="{{ form.car_brand.id_for_label }}" class="label">
+                      kolor
+         </label>
+        <div class="control">
+          <input class="input is-info" type="text" placeholder="wskaż markę pojazdu"   name="color" maxlength="64">
+        </div>
+      </div>
+       <br>
+
+      <div class="field">
+         <label for="{{ form.year_of_production.id_for_label }}" class="label">
+                      przebieg
+         </label>
+        <div class="control">
+          <input class="input is-info" type="number" placeholder="wskaż rok produkcji pojazdu"  name="car_mileage">
+        </div>
+      </div>
+       <br>
+
   </div>
-</div>
- <br>
-
-        <div class="field">
-           <label for="{{ form.year_of_production.id_for_label }}" class="label">
-                        rok produkcji
-           </label>
+  <div class='box'>
+      <div class="field">
+          <label class="label">opis</label>
           <div class="control">
-            <input class="input is-info" type="number" placeholder="wskaż rok produkcji pojazdu"  name="year_of_production">
+            <textarea class="textarea" placeholder="opis pojazdu" name="description" rows="10"></textarea>
           </div>
-        </div>
-         <br>
-
-        <div class="field">
-           <label for="{{ form.car_brand.id_for_label }}" class="label">
-                        kolor
-           </label>
-          <div class="control">
-            <input class="input is-info" type="text" placeholder="wskaż markę pojazdu"   name="color" maxlength="64">
-          </div>
-        </div>
-         <br>
-
-        <div class="field">
-           <label for="{{ form.year_of_production.id_for_label }}" class="label">
-                        przebieg
-           </label>
-          <div class="control">
-            <input class="input is-info" type="number" placeholder="wskaż rok produkcji pojazdu"  name="car_mileage">
-          </div>
-        </div>
-         <br>
-
-
-
-<div class="field">
-  <label class="label">opis</label>
-  <div class="control">
-    <textarea class="textarea" placeholder="opis pojazdu" name="description" rows="10"></textarea>
+      </div>
   </div>
-</div>
 
-
-
-
-<section class="section is-fullheight">
-    <h2 class="title is-3 has-text-centered mr-6">Wyposażenie </h2>
-    <container>
-        <div class="box">
-
-
-<div class="control">
-  <label class="radio is-multiple">
-    <input type="checkbox" name="car_equipment" value="1">
-    ABS
-  </label>
-  <label class="radio">
-    <input type="checkbox" name="car_equipment" value="2">
-    Elektryczne lusterka przednie
-  </label>
-   <label class="radio">
-    <input type="checkbox" name="car_equipment" value="3">
-    Bluetooth
-  </label>
-   <label class="radio">
-    <input type="checkbox" name="car_equipment" value="4">
-    ESP (stabilizacja toru jazdy)
-  </label>
-
-   <label class="radio">
-    <input type="checkbox" name="car_equipment" value="5">
-    Czujniki parkowania
-  </label>
-<br>
- <label class="radio">
-    <input type="checkbox" name="car_equipment" value="6">
-    Elektrycznie ustawiane fotele
-  </label>
-
- <label class="radio">
-    <input type="checkbox" name="car_equipment" value="7">
-    Światła LED
-  </label>
-
- <label class="radio">
-    <input type="checkbox" name="car_equipment" value="8">
-    CD
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="9">
-    Podgrzewane lusterka boczne
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="10">
-    Podgrzewane przednie siedzenia
-  </label>
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="11">
-    klimatyzacja
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="12">
-    Kurtyny powietrzne
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="13">
-    Isofix
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="14">
-    elektryczne lusterka tylne
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="15">
-    Centralny zamek
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="16">
-    Czujnik zmierzchu
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="17">
-    komputer pokładowy
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="18">
-    System Start-Stop
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="19">
-    Czujnik deszczu
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="20">
-    Alarm
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="21">
-    Wielofunkcyjna kierownica
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="22">
-    Klimatyzacja automatyczna
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="23">
-    Elektryczne szyby przednie
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="24">
-    Elektryczne szyby tylne
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="25">
-    ASR (kontrola trakcji)
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="26">
-    Kamera cofania
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="27">
-    Elektrochromatyczne lusterko wsteczne
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="28">
-    Tempomat
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="29">
-    Nawigacja GPS
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="30">
-    Immobilizer
-  </label>
-
-<label class="radio">
-    <input type="checkbox" name="car_equipment" value="31">
-    Alufelgi
-  </label>
-
-</div>
-</div>
-</container>
-
-</section>
-<br>
-<h2 class="title is-3 has-text-centered mr-6">Zdjęcia pojazdu</h2>
+  <div class='box'>
+      <h2 class="title is-3 has-text-centered mr-6">Wyposażenie </h2>
+      <br>
+      <div class="control">
+          <label class="radio is-multiple">
+            <input type="checkbox" name="car_equipment" value="1">
+            ABS
+          </label>
+          <label class="radio">
+            <input type="checkbox" name="car_equipment" value="2">
+            Elektryczne lusterka przednie
+          </label>
+           <label class="radio">
+            <input type="checkbox" name="car_equipment" value="3">
+            Bluetooth
+          </label>
+           <label class="radio">
+            <input type="checkbox" name="car_equipment" value="4">
+            ESP (stabilizacja toru jazdy)
+          </label>
+         
+           <label class="radio">
+            <input type="checkbox" name="car_equipment" value="5">
+            Czujniki parkowania
+          </label>
+         <br>
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="6">
+            Elektrycznie ustawiane fotele
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="7">
+            Światła LED
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="8">
+            CD
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="9">
+            Podgrzewane lusterka boczne
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="10">
+            Podgrzewane przednie siedzenia
+          </label>
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="11">
+            klimatyzacja
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="12">
+            Kurtyny powietrzne
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="13">
+            Isofix
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="14">
+            elektryczne lusterka tylne
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="15">
+            Centralny zamek
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="16">
+            Czujnik zmierzchu
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="17">
+            komputer pokładowy
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="18">
+            System Start-Stop
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="19">
+            Czujnik deszczu
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="20">
+            Alarm
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="21">
+            Wielofunkcyjna kierownica
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="22">
+            Klimatyzacja automatyczna
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="23">
+            Elektryczne szyby przednie
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="24">
+            Elektryczne szyby tylne
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="25">
+            ASR (kontrola trakcji)
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="26">
+            Kamera cofania
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="27">
+            Elektrochromatyczne lusterko wsteczne
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="28">
+            Tempomat
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="29">
+            Nawigacja GPS
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="30">
+            Immobilizer
+          </label>
+         
+         <label class="radio">
+            <input type="checkbox" name="car_equipment" value="31">
+            Alufelgi
+          </label>
+      </div>
+      </div>
+      <h2 class="title is-3 has-text-centered mr-6">Zdjęcia pojazdu</h2>
 <br><br>
 
 <div class="file has-name">
-  <label class="file-label">
-    <input class="file-input" type="file" name="photos">
-    <span class="file-cta">
-      <span class="file-icon">
-        <i class="fas fa-upload"></i>
-      </span>
-      <span class="file-label">
-        Zdjęcie główne
-      </span>
-    </span>
+<label class="file-label">
+ <input class="file-input" type="file" name="photos">
+ <span class="file-cta">
+   <span class="file-icon">
+     <i class="fas fa-upload"></i>
+   </span>
+   <span class="file-label">
+     Zdjęcie główne
+   </span>
+ </span>
 
-  </label>
+</label>
 </div>
 
 <div class="file has-name">
-  <label class="file-label">
-    <input class="file-input" type="file" name="photos_2">
-    <span class="file-cta">
-      <span class="file-icon">
-        <i class="fas fa-upload"></i>
-      </span>
-      <span class="file-label">
-        Zdjęcie 2.
-      </span>
-    </span>
+<label class="file-label">
+ <input class="file-input" type="file" name="photos_2">
+ <span class="file-cta">
+   <span class="file-icon">
+     <i class="fas fa-upload"></i>
+   </span>
+   <span class="file-label">
+     Zdjęcie 2.
+   </span>
+ </span>
 
-  </label>
+</label>
 </div>
 
 <div class="file has-name">
-  <label class="file-label">
-    <input class="file-input" type="file" name="photos_3">
-    <span class="file-cta">
-      <span class="file-icon">
-        <i class="fas fa-upload"></i>
-      </span>
-      <span class="file-label">
-        Zdjęcie 3.
-      </span>
-    </span>
+<label class="file-label">
+ <input class="file-input" type="file" name="photos_3">
+ <span class="file-cta">
+   <span class="file-icon">
+     <i class="fas fa-upload"></i>
+   </span>
+   <span class="file-label">
+     Zdjęcie 3.
+   </span>
+ </span>
 
-  </label>
+</label>
 </div>
 
 
 <div class="file has-name">
-  <label class="file-label">
-    <input class="file-input" type="file" name="photos_3">
-    <span class="file-cta">
-      <span class="file-icon">
-        <i class="fas fa-upload"></i>
-      </span>
-      <span class="file-label">
-        Zdjęcie 4
-      </span>
-    </span>
+<label class="file-label">
+ <input class="file-input" type="file" name="photos_3">
+ <span class="file-cta">
+   <span class="file-icon">
+     <i class="fas fa-upload"></i>
+   </span>
+   <span class="file-label">
+     Zdjęcie 4
+   </span>
+ </span>
 
-  </label>
+</label>
 </div>
 
 <div class="file has-name">
-  <label class="file-label">
-    <input class="file-input" type="file" name="photos_4">
-    <span class="file-cta">
-      <span class="file-icon">
-        <i class="fas fa-upload"></i>
-      </span>
-      <span class="file-label">
-        Zdjęcie 5
-      </span>
-    </span>
+<label class="file-label">
+ <input class="file-input" type="file" name="photos_4">
+ <span class="file-cta">
+   <span class="file-icon">
+     <i class="fas fa-upload"></i>
+   </span>
+   <span class="file-label">
+     Zdjęcie 5
+   </span>
+ </span>
 
-  </label>
+</label>
 </div>
 
 <div class="field is-grouped">
-  <div class="control">
-    <button class="button is-link">dodaj ofertę</button>
-  </div>
+<div class="control">
+ <button class="button is-link">dodaj ofertę</button>
 </div>
-      </div>
-    </td>
-    <td></td>
-    </tr>
-    </tbody>
+</div>
 
-{% endblock content %}
+
+
+ </div>
+ </div>
+
+ <div class="column"></div>
+</div>
+ {% endblock content %}
 </form>

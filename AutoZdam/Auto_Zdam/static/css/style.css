@@ -2,7 +2,12 @@
 	margin: 0;
 	background: aliceblue;
 	font-family: 'Work Sans', sans-serif;
-	font-weight: 800;send;
+	font-weight: 800send;
+}
+
+.main-page-container {
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .container {
@@ -110,12 +115,7 @@ nav a:hover::before {
     margin: 0 0 0 302px;
 }
 
-.margin {
-	p.ex1 {
 
-	margin-left: 350px;
-}
-	}
 
 .table {
 	display: table;   /* Allow the centering to work */

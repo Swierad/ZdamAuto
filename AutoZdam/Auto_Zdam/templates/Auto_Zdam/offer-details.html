@@ -1,135 +1,98 @@
-<form action="" method="post">
+<form action="" method="post" class='mx-6'>
 
 {% extends "base.html" %}
 {% load widget_tweaks %}
 {% block content %}
 
-
-
-    <div class="box">
-      <article class="media">
-        <div class="media-content">
-          <div class="content">
-            <p>
-                 <h1 class="margin"> {{offer.car_brand}} {{ offer.car_model }} </h1>
-                 <h3>  CENA: {{ offer.price }} PLN</h3>
-                {% if  offer.user|stringformat:'s'  == user.get_username|stringformat:'s'%}
-                 <a href="{% url 'offer-update' offer.id %}"> edytuj ofertę | </a> <a href="{% url 'offer-delete' offer.id %}"> usuń ofertę</a>
-                {% else %}
-                 <a href="{% url 'offer-msg' offer.id %}">skontaktuj się z Wystawiającym:</a>
-                {% endif %}
-            </p>
-          </div>
-        </div>
-      </article>
-    </div>
+<br>
 <br>
 
- <div class="field is-horizontal">
-    <div class="field-body">
-      <div class="field">
-        <p class="control is-expanded has-icons-left">
-
-
-            <div class="media-content">
-                <div class="content ">
-                    <div class="bxslider ">
-                        <div><img src="{{offer.photos.url}}"> </div>
-                            {% if offer.photos_2.url != None %}
-                         <div><img src="{{offer.photos_2.url}}"> </div>
-                            {% endif %}
-                            {% if offer.photos_3.url != None %}
-                         <div><img src="{{offer.photos_3.url}}"> </div>
-                            {% endif %}
-                            {% if offer.photos_4.url != None %}
-                         <div><img src="{{offer.photos_4.url}}"> </div>
-                            {% endif %}
-                            {% if offer.photos_5.url != None %}
-                         <div><img src="{{offer.photos_5.url}}"> </div>
-                            {% endif %}
-                    </div>
-                </div>
-            </div>
-
-        </p>
-      </div>
-      <div class="field">
-          <p class="has-text-centered">
-          <strong>Informacje ogólne:</strong>
-          </p>
-          <br>
-          <br>
-        <p class="control is-expanded has-icons-left has-icons-right">
-
-                <nav class="level">
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <div id="offer_one">
-                                    marka pojazdu: <strong>{{offer.car_brand}}</strong> <br>
-                                    model pojazdu: <strong>{{offer.car_model}}</strong> <br>
-                                    kategoria: <strong>{{offer.get_category_display}}</strong> <br>
-                                    typ: <strong>{{offer.get_type_display}}</strong> <br>
-                                    kolor: <strong>{{offer.color}}</strong> <br>
-                                    rok produkcji: <strong>{{offer.year_of_production}}</strong>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <div id="offer_two">
-                                    rodzaj paliwa: <strong>{{offer.get_fuel_type_display}}</strong> <br>
-                                    liczba drzwi: <strong>{{offer.doors_number}}</strong> <br>
-                                    liczba miejsc: <strong>{{offer.seats_number}}</strong> <br>
-                                    przebieg: <strong>{{offer.car_mileage}}</strong> <br>
-                                    pojemność skokowa: <strong>{{offer.engine_capacity}}</strong> <br>
-                            </div>
-                        </div>
-                    </div>
-
-                </nav>
-
-        </p>
-      </div>
+  <div class="columns">
+    <div class="column">
+      <p>
+        <h1 class="margin"> {{offer.car_brand}} {{ offer.car_model }} </h1>
+        <h3>  CENA: {{ offer.price }} PLN</h3>
+      {% if  offer.user|stringformat:'s'  == user.get_username|stringformat:'s'%}
+        <a href="{% url 'offer-update' offer.id %}"> edytuj ofertę | </a> <a href="{% url 'offer-delete' offer.id %}"> usuń ofertę</a>
+      {% else %}
+        <a href="{% url 'offer-msg' offer.id %}">skontaktuj się z Wystawiającym:</a>
+      {% endif %}
+      </p>
     </div>
   </div>
+<br>
 
+<div class="columns">
+  <div class="column">
+    <div class="bxslider ">
+      <div><img src="{{offer.photos.url}}"> </div>
+          {% if offer.photos_2.url != None %}
+       <div><img src="{{offer.photos_2.url}}"> </div>
+          {% endif %}
+          {% if offer.photos_3.url != None %}
+       <div><img src="{{offer.photos_3.url}}"> </div>
+          {% endif %}
+          {% if offer.photos_4.url != None %}
+       <div><img src="{{offer.photos_4.url}}"> </div>
+          {% endif %}
+          {% if offer.photos_5.url != None %}
+       <div><img src="{{offer.photos_5.url}}"> </div>
+          {% endif %}
+    </div>
+  </div>
+  <div class="column">
+    <p class='has-text-centered has-text-justified'>{{offer.description}}</p>
+  </div>
+</div>
 
-
-        <div class="box">
-              <article class="media">
-                <div class="media-content">
-                  <div class="content">
-
-
-                  </div>
-                </div>
-              </article>
-        </div>
-
-
-
-
-
-
-
-<div id="equipe">
-    <strong class="has-text-centered">Wyposażenie:</strong>
+<div class="columns">
+  <div class="column">
+    <p class="has-text-centered">
+      <strong>Informacje ogólne:</strong>
+    </p>
     <br>
-
+    <nav class="level">
+    <div class="level-item has-text-centered">
+      <div>
+          <div id="offer_one">
+                  marka pojazdu: <strong>{{offer.car_brand}}</strong> <br>
+                  model pojazdu: <strong>{{offer.car_model}}</strong> <br>
+                  kategoria: <strong>{{offer.get_category_display}}</strong> <br>
+                  typ: <strong>{{offer.get_type_display}}</strong> <br>
+                  kolor: <strong>{{offer.color}}</strong> <br>
+                  rok produkcji: <strong>{{offer.year_of_production}}</strong>
+          </div>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      
+          <div id="offer_two">
+                  rodzaj paliwa: <strong>{{offer.get_fuel_type_display}}</strong> <br>
+                  liczba drzwi: <strong>{{offer.doors_number}}</strong> <br>
+                  liczba miejsc: <strong>{{offer.seats_number}}</strong> <br>
+                  przebieg: <strong>{{offer.car_mileage}}</strong> <br>
+                  pojemność skokowa: <strong>{{offer.engine_capacity}}</strong> <br>
+          </div>
+    </div>
+    </nav>
+    
+  </div>
+  <div class="column ">
+    
+    <p>
+      <strong class='has-text-centered'>Wyposażenie:</strong>
+    </p>
+    <br>
     <ul>
     {% for i in offer.car_equipment.all %}
         <li>
-           <span><i class="fas fa-circle"></i></span> {{ i.equip }};
+          <span><i class="fas fa-circle"></i></span> {{ i.equip }};
         </li>
     {% endfor %}
-
-
-
     </ul>
-
+    <br>
+  </div>
 </div>
-
-
 
 {% endblock content %}
 

@@ -5,58 +5,35 @@
 {% block content %}
 {% csrf_token %}
 <br>
-
+<div class='mx-6'>
     <form method = "get">
         {{ offerFilter.form}}
         <input type="submit" value="szukaj">
     </form>
+    <br>
+    <br>
+    {% for i in r %}
+    
 
-  {% for i in r %}
-  <section class="section is-fullheight" id="prawnicy">
 
-    <div class="box">
-<table class="main">
-    <thead>
-        <tr><th class="col-1" width="15%"></th>
-            <th class="col-2" width="25%"></th>
-            <th class="col-4" width="20%"></th>
-            <th class="col-5" width="25%"></th>
-            <th class="col-6" width="15%"></th>
-        </tr>
-    </thead>
+    <div class="columns is-mobile">
+    <div class="column is-half-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+        <a href={% url 'offer-details' i.id %}><img src="{{i.photos.url}}" width="100%" alt="mapa"> </a>
 
-<tbody class="text-color-lighter">
+    </div>
+    <div class="column">
+        <a href={% url 'offer-details' i.id %} class='is-size-7-mobile'> &nbsp&nbsp {{i.car_brand}} {{ i.car_model }} <br> &nbsp&nbsp Cena: {{i.price}} PLN <br> &nbsp&nbsp rocznik: {{ i.year_of_production }} <br> &nbsp&nbsp lokalizacja: {{ i.user.wherefrom}} <br> &nbsp&nbsp przebieg: {{ i.car_mileage }}&nbspkm <br> &nbsp&nbsp pojemność:{{ i.engine_capacity }}&nbspcm3 <br>&nbsp&nbsp rodzaj paliwa: {{ i.get_fuel_type_display }} </a>
+    </div>
+    <div class="column visibility-desktop is-hidden-touch">
+        <a> opis: <br> {{ i.description }}</a>
+    </div>
 
-    <tr>
-            <td></td>
-            <td rowspan="2" class="image"><a href={% url 'offer-details' i.id %}><img src="{{i.photos.url}}" width="100%" alt="mapa"> </a></td> 
+    </div>
 
-            <td class="col-2" height="30px">
-            <div class="content">
-              <a href={% url 'offer-details' i.id %}> &nbsp&nbsp {{i.car_brand}} {{ i.car_model }} <br> &nbsp&nbsp Cena: {{i.price}} PLN <br> &nbsp&nbsp rocznik: {{ i.year_of_production }} <br> &nbsp&nbsp lokalizacja: {{ i.user.wherefrom}} <br> &nbsp&nbsp przebieg: {{ i.car_mileage }}&nbspkm <br> &nbsp&nbsp pojemnośc silnika: {{ i.engine_capacity }}&nbspcm3 <br>&nbsp&nbsp rodzaj paliwa: {{ i.get_fuel_type_display }} </a></td>
-            </div>
-            <td rowspan="3" class="col-6">
-                <a> opis: <br> {{ i.description }}
-                </a>
-            </td>
-            <td></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
-  </div>
+    </section>
+    {% endfor %}
 
-</section>
-{% endfor %}
-
-{% endblock content %}
-
+    {% endblock content %}
+</div>
 </form>
+

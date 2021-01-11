@@ -1,82 +1,73 @@
 {% load static %}
 <html>
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
-      <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
-      <script type="text/JavaScript" src="{% static 'css/style.css' %}"></script>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
+    ></script>
+    <script type="stylesheet" src="{% static 'css/style.css' %}"></script>
 
+    
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a
+          role="button"
+          class="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="NavMenu"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
 
-
-        <style>
-            .margin {
-            p.ex1 {
-
-              margin-left: 350px;
-            }
-            }
-
-            .table {
-                display: table;   /* Allow the centering to work */
-                margin: 0 auto;
-            }
-
-            .txt_white {
-            color: white;
-            }
-
-
-
-        </style>
-
-
-    </head>
-    <body>
-      <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div id="NavMenu" class="navbar-menu">
+        <div class="navbar-start">
           <div class="navbar-brand">
-              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="NavMenu">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-              </a>
-          </div>
-
-        <div id="NavMenu" class="navbar-menu">
-          <div class="navbar-start">
-            <div class="navbar-brand">
-              <a class="navbar-item" href="{% url 'main' %}">
-                <img src="{% static 'img/logo.png' %}" width="130" height="56">
-              </a>
-            </div>
-          </div>
-          <div class="navbar-end">
             <a class="navbar-item" href="{% url 'main' %}">
-              strona główna </a>
-            <a class="navbar-item" href="{% url 'add_offer' %}">dodaj ofertę </a>
-            <a class="navbar-item" href="{% url 'user_create' %}">rejestracja </a>
-            {% if user.is_authenticated %}
-            <a class="navbar-item" href="{% url 'my-view' %}">mój profil </a>
-            {% endif %}
-          {% if user.is_authenticated %}
-            <a class="navbar-item" href="{% url 'user-logout' %}">wyloguj ({{ user.get_username }})</a>
-          {% else %}
-            <a class="navbar-item" href="{% url 'user-login' %}">zaloguj</a>
-          {% endif %}
+              <img src="{% static 'img/logo.png' %}" width="130" height="56" />
+            </a>
           </div>
         </div>
-      </nav>
+        <div class="navbar-end">
+          <a class="navbar-item" href="{% url 'main' %}"> strona główna </a>
+          <a class="navbar-item" href="{% url 'add_offer' %}">dodaj ofertę </a>
+          <a class="navbar-item" href="{% url 'user_create' %}">rejestracja </a>
+          {% if user.is_authenticated %}
+          <a class="navbar-item" href="{% url 'my-view' %}">mój profil </a>
+          {% endif %} {% if user.is_authenticated %}
+          <a class="navbar-item" href="{% url 'user-logout' %}"
+            >wyloguj ({{ user.get_username }})</a
+          >
+          {% else %}
+          <a class="navbar-item" href="{% url 'user-login' %}">zaloguj</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
 
-        {% block content %}
-        {% endblock %}
-
-
-
-    </body>
+    {% block content %} {% endblock %}
+  </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"> </script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"
+  />
   <script type="text/JavaScript" src="{% static 'js/app.js' %}"></script>
 </html>

@@ -1,66 +1,63 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <form action="" method="post">
-	{% csrf_token %}
+  {% csrf_token %}
 
+  <br class="is-desktop"/>
+  <br class="is-desktop"/>
+  <br class="is-desktop"/>
 
-		<br>
-	<br>
-	<br>
+  <div class="columns">
+    <div class="column is-desktop"></div>
 
+    <div class="column">
+      <h1 class="title is-3 has-text-centered">Zaloguj Się</h1>
+      <br class="is-desktop"/>
+      <br class="is-desktop"/>
+      <br/>
 
+      <div class="box register_box">
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              class="input"
+              type="email"
+              name="username"
+              required
+              id="id_username"
+            />
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </div>
+        </div>
+        <!-- </div> -->
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              class="input"
+              type="password"
+              name="password"
+              required
+              id="id_password"
+            />
+            <span class="icon is-small is-left">
+              <i class="fas fa-user-alt"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link">zaloguj</button>
+        </div>
+      </div>
+    </div>
 
-	  <h1 class="title is-3 has-text-centered">Zaloguj Się</h1>
-	<br>
-	<br>
-	<br>
-
-		<table >
-		   <thead>
-			<tr><th class="col-1" width="60%"></th>
-				<th class="col-2" width="30%"></th>
-				<th class="col-3" width="10%"></th>
-
-				</tr>
-				</thead>
-				<tbody>
-				<tr>
-				<td></td>
-				<td>
-<div class="box register_box">
-	<div class="field">
-	  <label class="label">Email</label>
-	  <div class="control has-icons-left has-icons-right">
-		<input class="input " type="email" name="username" required id="id_username">
-		<span class="icon is-small is-left">
-		  <i class="fas fa-envelope"></i>
-		</span>
-	  </div>
-
-	</div>
-
-	<div class="field">
-	  <label class="label">Name</label>
-	  <div class="control">
-		  <p class="control is-expanded has-icons-left">
-			<input class="input" type="password" name="password" required id="id_password">
-			  <span class="icon is-small is-left">
-				<i class="fas fa-user-alt"></i>
-			  </span>
-		  </p>
-	  </div>
-	  <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">zaloguj</button>
-	</div>
-</div>
-			</td>
-			<td></td>
-			</tr>
-			</tbody>
-		</table>
-</div>
+    <div class="column"></div>
+  </div>
 </form>
 
 {% endblock %}
