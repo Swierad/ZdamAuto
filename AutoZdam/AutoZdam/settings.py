@@ -109,9 +109,11 @@ AUTH_USER_MODEL = 'Auto_Zdam.User'
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pl'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Warsaw'
 
 USE_I18N = True
 
@@ -134,10 +136,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 STATIC_URL = '/static/'
 
 
-EMAIL_HOST = 'poczta.o2.pl'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'swierad-88@o2.pl'
-EMAIL_HOST_PASSWORD = 'umbridge'
+EMAIL_HOST_USER = 'swierad@gmail.com'
+EMAIL_HOST_PASSWORD = 'regulaminowy'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 

@@ -7,7 +7,7 @@ from .tokens import user_tokenizer
 from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth.models import User as DjangoUser
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
@@ -20,6 +20,7 @@ from django.core.mail import EmailMessage
 from django.template.loader import get_template
 from django.utils.encoding import force_bytes, force_text
 from django.contrib.auth.forms import AuthenticationForm
+
 
 
 
@@ -67,12 +68,12 @@ class UserCreate(View):
             user.save()
             token = user_tokenizer.make_token(user)
             user_id = urlsafe_base64_encode(force_bytes(user.id))
-            url = 'https://autozdam.herokuapp.com' + reverse('confirm_email', kwargs={'user_id': user_id, 'token': token})
+            url = 'http://autozdam.pythonanywhere.com/' + reverse('confirm_email', kwargs={'user_id': user_id, 'token': token})
             message = get_template('Auto_Zdam/register_email.html').render({
                 'confirm_url': url
             })
             mail = EmailMessage('Django Survey Email Confirmation', message, to=[user.email],
-                                from_email='swierad-88@o2.pl')
+                                from_email='swierad@gmail.com')
             mail.content_subtype = 'html'
             mail.send()
 
@@ -81,7 +82,7 @@ class UserCreate(View):
                 'message': f'A confirmation email has been sent to {user.email}. Please confirm to finish registering'
             })
 
-        return render(request, 'survey/register.html', {'form': form})
+        return render(request, 'Auto_Zdam/register.html', {'form': form})
 
 
 class ConfirmRegistrationView(View):
@@ -97,10 +98,16 @@ class ConfirmRegistrationView(View):
         if user and user_tokenizer.check_token(user, token):
             user.is_active = True
             user.save()
-            context['message'] = 'Registration complete. Please login'
+            context['message'] = 'Rejestracja zakończona. Zaloguj się'
             return render(request, "Auto_Zdam/user_login.html", context)
 
         return render(request, "Auto_Zdam/user_login.html", context)
+
+
+
+
+
+        
 
 class EquipCreate(PermissionRequiredMixin, CreateView):
     permission_required = 'Auto_Zdam.add_equipe'
@@ -111,12 +118,19 @@ class EquipCreate(PermissionRequiredMixin, CreateView):
 
 class MainView(View):
     def get(self, request):
-        r = Offer.objects.order_by('id')
-        offerFilter = OfferFilter(request.GET, queryset=r)
-        r = offerFilter.qs
+        offer_list = Offer.objects.order_by('id')
+        offerFilter = OfferFilter(request.GET, queryset=offer_list)
+        offer_list = offerFilter.qs
+        paginator = Paginator(offer_list, 5)
+        page = request.GET.get('page', 1)
+
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
         ctx = {
-            'r': r,
+            'r': page_obj,
             'offerFilter': offerFilter
+
         }
         return render(request, "Auto_Zdam/index.html", ctx)
 

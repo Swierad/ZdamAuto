@@ -11,6 +11,7 @@
     <div class="column is-desktop"></div>
 
     <div class="column">
+      <p class='has-text-centered'>{{ message }}</p>
       <h1 class="title is-3 has-text-centered">Zaloguj Się</h1>
       <br class="is-desktop"/>
       <br class="is-desktop"/>
@@ -53,6 +54,9 @@
         <div class="control">
           <button class="button is-link">zaloguj</button>
         </div>
+      </div>
+      <div class="control">
+        <a href="{% url 'reset_password' %}">przypomnij hasło</a>
       </div>
     </div>
 

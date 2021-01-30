@@ -32,8 +32,36 @@
 
     </section>
     {% endfor %}
+    
+    <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+        {% if r.has_previous %}
+            <a class="pagination-previous" href="?page={{ r.previous_page_number }}">poprzednia strona</a>
+        {% endif %}
+        {% if r.has_next %}
+        <a class="pagination-next" href="?page={{ r.next_page_number }}">następna strona</a>
+        {% endif %}
+        <ul class="pagination-list">
+          {% if r.previous_page_number == 1 or r.number == 1 %}
 
-    {% endblock content %}
-</div>
-</form>
+          {% else %}  
+          <li><a class="pagination-previous" href="?page=1">1</a></li>
+          <li><span class="pagination-ellipsis">&hellip;</span></li>
+          {% endif %}
+          {% if r.has_previous %}
+          <li><a class="pagination-link" href="?page={{ r.previous_page_number }} aria-label="{{ r.previous_page_number }}">{{ r.previous_page_number }}</a></li>
+          {% endif %}
+          <li><a class="pagination-link is-current" aria-label="{{ r.number }}" aria-current="page">{{ r.number }}</a></li>
+          {% if r.has_next %}
+          <li><a class="pagination-link" href="?page={{ r.next_page_number }}" aria-label="{{ r.next_page_number }}">{{ r.next_page_number }}</a></li>
+          {% endif %}
+          {% if r.next_page_number == r.paginator.num_pages or r.number == r.paginator.num_pages %}
 
+          {% else %}
+          <li><span class="pagination-ellipsis">&hellip;</span></li>
+          <li><a class="pagination-previous" href="?page={{page_obj.paginator.num_pages}}">{{r.paginator.num_pages}}</a></li>
+          {% endif %}
+          
+        </ul>
+      </nav>
+    
+{% endblock content %} 

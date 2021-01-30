@@ -1,16 +1,205 @@
-<form action="" method="post">
-
 {% extends "base.html" %}
-
 {% block content %}
+{% load widget_tweaks %}
+<form action="" method="post"></form>
+{% csrf_token %}
+<!-- {{ form.as_p }} -->
 
-   <form action="" method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
+<div class="columns is-desktop">
+  <div class="column"></div>
+  <div class="column is-two-thirds">
+
+    <div class="box">
+      <h1 class="title is-3 has-text-centered">Edytuj dane wystawionego pojazdu </h1>
+
+      <div class='box'>
+        <strong>Informacje ogólne</strong>
+        <br><br>
+
+        <div class="field">
+          Cena
+          {% render_field form.price class="input is-info" %}
+        </div>
+
+        <div class="field">
+          
+          Marka
+          {% render_field form.car_brand class="input is-info" %}
+         
+        </div>
+ 
+       <div class="field">
+          
+          Model
+          {% render_field form.car_model class="input is-info" %}
+         
+       </div>
+        
+       <div class="field">
+         <label> Kategoria</label>
+        <br>
+        <div class="control">
+          <div class="select">
+        {% render_field form.category class="input is-info" %}
+          </div>
+        </div> 
+       </div>
+     
+       <div class="field">
+        <label> Typ </label>
+       <br>
+       <div class="control">
+         <div class="select">
+       {% render_field form.type class="input is-info"%}
+         </div>
+       </div> 
+      </div>
+
+      <div class="field">
+        <label> Rodzaj Paliwa </label>
+       <br>
+       <div class="control">
+         <div class="select">
+       {% render_field form.fuel_type class="input is-info"%}
+         </div>
+       </div> 
+      </div>
+
+      <div class="field">
+        <label> Liczba drzwi </label>
+       <br>
+       <div class="control">
+         <div class="select">
+          {% render_field form.doors_number class="input is-info" %}
+         </div>
+       </div> 
+      </div>
+
+      <div class="field">
+        <label> Liczba siedzeń </label>
+       <br>
+       <div class="control">
+         <div class="select">
+          {% render_field form.seats_number class="input is-info" %}
+         </div>
+       </div> 
+      </div>
+
+      <div class="field">
+        Pojemność silnika
+        {% render_field form.engine_capacity class="input is-info" type="number" %}
+      </div>
+
+      <div class="field">
+        Rok produkcji
+        {% render_field form.year_of_production class="input is-info" type="number" %}
+      </div>
+
+      <div class="field">
+        Kolor
+        {% render_field form.color class="input is-info" type="text" %}
+      </div>
+
+      <div class="field">
+        Przebieg
+        {% render_field form.car_mileage class="input is-info" type="number" %}
+      </div>
+
+      <div class="field">
+        Przebieg
+        {% render_field form.description class="textarea is-info" rows="10"%}
+      </div>
+ 
+       </div>  
+       
+       <div class='box'>
+        <div class="control">
+          <label class="radio">
+            {% render_field form.car_equipment %}
+          </label>
+        </div>
+      </div>
+
+      <div class='box'>
+        <div class="control">
+          <label class="radio">
+            {% render_field form.car_equipment %}
+          </label>
+        </div>
+      </div>
+
+       <!-- <div class='box'>
+        <div class="field">
+          Wyposażenie - - do ogarnięcia kwestia wyświetlania
+          <br>
+          {% render_field form.car_equipment class="radio is-multiple" %}
+        </div>
+        </div> -->
+
+        <div class='box'>
+        
+          Zdjęcie główne <br>
+          {% render_field form.photos %}
+          <br><br>
+
+          Zdjęcie drugie <br>
+          {% render_field form.photos_2 %}
+          <br><br>
+
+          Zdjęcie trzecie <br>
+          {% render_field form.photos_3 %}
+          <br><br>
+
+          Zdjęcie czwarte <br>
+          {% render_field form.photos_4 %}
+          <br><br>
+
+          Zdjęcie piąte<br>
+          {% render_field form.photos_5 %}
+          <br><br>
+
+      </div>  
+
+       
+ 
+  
+  <br>
+  
+ 
+  
+  
+  
+
+  
+  
+  <br>
+<!-- <div type="hidden">
+  {% render_field form.user type="hidden" class="hidden" %}
+</div> -->
+  <br>
+  
+  <br>
+  <!-- {% render_field form.photos class="file-input" type="file" %}
+  <br>
+  {% render_field form.photos_2 class="file-input" type="file" %}
+  <br>
+  {% render_field form.photos_3 class="file-input" type="file" %}
+  <br>
+  {% render_field form.photos_4 class="file-input" type="file" %}
+  <br>
+  {% render_field form.photos_5 class="file-input" type="file" %} -->
+
+  </div>    
+
+
   <input type="submit" value="Save">
-</form>
+</form>  
+
+</div>
+
+<div class="column"></div>
+</div>
 
 
 {% endblock content %}
 
-</form>
