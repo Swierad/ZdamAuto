@@ -28,7 +28,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 
 class AddOffer(LoginRequiredMixin, View):
-    login_url = reverse_lazy('user-login')
+    # login_url = reverse_lazy('user-login')
 
 
     def get(self, request):
@@ -118,24 +118,45 @@ class EquipCreate(PermissionRequiredMixin, CreateView):
 
 class MainView(View):
     def get(self, request):
-        offer_list = Offer.objects.order_by('id')
+        offer_list = Offer.objects.all()
+        offer_sample = offer_list[:10]
+        no_of_offers = offer_list.count()
+        no_of_users = User.objects.count()
         offerFilter = OfferFilter(request.GET, queryset=offer_list)
         offer_list = offerFilter.qs
-        paginator = Paginator(offer_list, 5)
-        page = request.GET.get('page', 1)
+        form = OfferForm(request.user)
+        current_user = request.user
+        user_id = current_user.id
+        contact_form = ContactForm()
+        
 
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
 
         ctx = {
-            'r': page_obj,
-            'offerFilter': offerFilter
-
+            'no_of_offers': no_of_offers,
+            'no_of_users': no_of_users,
+            'offerFilter': offerFilter,
+            'offer_sample': offer_sample,
+            "form": form,
+            "id": user_id,
+            "contact_form": contact_form
         }
         return render(request, "Auto_Zdam/index.html", ctx)
+    
+    def post(self, request):
+        form = OfferForm(request.user)        
+        current_user = request.user
+        user_id = current_user.id
+        price = request.POST.get("price")
+        car_brand = request.POST.get("car_brand")
+        car_model = request.POST.get("car_model")
+        year_of_production = request.POST.get("year_of_production")
+        engine_capacity = request.POST.get("engine_capacity")
+        ctx = {'car_brand': car_brand, 'car_model': car_model, 'year_of_production': year_of_production, 'engine_capacity': engine_capacity, 'price': price, "form": form, "id": user_id}
 
-
-
+        if user_id == None:    
+            return render(request, "Auto_Zdam/user_login.html")
+        else:
+            return render(request, "Auto_Zdam/offer_form.html", ctx)
 
 
 class UserLoginView(View):
@@ -228,8 +249,24 @@ class MyView(View):
             "user":  request.user,
             "offers": offers
         }
-
-
         return render(request, "Auto_Zdam/MyView.html", ctx)
+    
 
+class OfferListView(View):
+    def get(self, request):
+        offer_list = Offer.objects.order_by('id')
+        offerFilter = OfferFilter(request.GET, queryset=offer_list)
+        offer_list = offerFilter.qs
+        paginator = Paginator(offer_list, 5)
+        page = request.GET.get('page', 1)
+
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        ctx = {
+            'r': page_obj,
+            'offerFilter': offerFilter
+
+        }
+        return render(request, "Auto_Zdam/offer_list.html", ctx)
 

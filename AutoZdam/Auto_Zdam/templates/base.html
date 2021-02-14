@@ -15,7 +15,10 @@
       defer
       src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
     ></script>
-    <script type="stylesheet" src="{% static 'css/style.css' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+
+
 
     
   </head>
@@ -45,6 +48,7 @@
         </div>
         <div class="navbar-end">
           <a class="navbar-item" href="{% url 'main' %}"> strona główna </a>
+          <a class="navbar-item" href="{% url 'offer_list' %}"> lista ofert </a>
           <a class="navbar-item" href="{% url 'add_offer' %}">dodaj ofertę </a>
           <a class="navbar-item" href="{% url 'user_create' %}">rejestracja </a>
           {% if user.is_authenticated %}
@@ -61,6 +65,7 @@
     </nav>
 
     {% block content %} {% endblock %}
+    <script src="{% static 'js/app1.js' %}"></script>
   </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -69,5 +74,5 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"
   />
-  <script type="text/JavaScript" src="{% static 'js/app.js' %}"></script>
+  <script src="{% static 'js/app.js' %}"></script>
 </html>

@@ -23,6 +23,7 @@ from Auto_Zdam.tokens import user_tokenizer
 
 urlpatterns = [
     path('', az_views.MainView.as_view(), name="main"),
+    path('offer_list', az_views.OfferListView.as_view(), name="offer_list"),
     path('admin/', admin.site.urls),
     path('offer/', az_views.AddOffer.as_view(), name="add_offer"),
     path('user_create/', az_views.UserCreate.as_view(), name='user_create'),

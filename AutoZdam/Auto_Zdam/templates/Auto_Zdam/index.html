@@ -1,67 +1,187 @@
-<form action="" method="get">
-
-{% extends "base.html" %}
-
-{% block content %}
-{% csrf_token %}
-<br>
-<div class='mx-6'>
-    <form method = "get">
-        {{ offerFilter.form}}
-        <input type="submit" value="szukaj">
-    </form>
-    <br>
-    <br>
-    {% for i in r %}
-    
-
-
-    <div class="columns is-mobile">
-    <div class="column is-half-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
-        <a href={% url 'offer-details' i.id %}><img src="{{i.photos.url}}" width="100%" alt="mapa"> </a>
-
+{% extends "base.html" %} {% load static %} {% block content %} 
+<br /><br /><br />
+<section class="first-row">
+  <div class="columns">
+    <div class="column" id="big">
+      <img
+        class="index-first-img"
+        src="{% static 'img/porsche.jpg' %}"
+        alt=""
+      />
     </div>
     <div class="column">
-        <a href={% url 'offer-details' i.id %} class='is-size-7-mobile'> &nbsp&nbsp {{i.car_brand}} {{ i.car_model }} <br> &nbsp&nbsp Cena: {{i.price}} PLN <br> &nbsp&nbsp rocznik: {{ i.year_of_production }} <br> &nbsp&nbsp lokalizacja: {{ i.user.wherefrom}} <br> &nbsp&nbsp przebieg: {{ i.car_mileage }}&nbspkm <br> &nbsp&nbsp pojemność:{{ i.engine_capacity }}&nbspcm3 <br>&nbsp&nbsp rodzaj paliwa: {{ i.get_fuel_type_display }} </a>
+      <br />
+      <p
+        class="index-first-paragraph is-size-1-desktop has-text-centered is-family-monospace"
+      >
+        Chcesz sprzedać auto?
+      </p>
+      <br />
+      <p class="is-size-2-desktop has-text-centered is-family-sans-serif">
+        Skontaktuj się z dziesiątkami komisów samochodowych nie wychodząc z
+        domu.
+      </p>
     </div>
-    <div class="column visibility-desktop is-hidden-touch">
-        <a> opis: <br> {{ i.description }}</a>
+  </div>
+</section>
+
+<br /><br /><br />
+
+<section class="basic-stats is-fullheight">
+  <br /><br /><br />
+
+  <div class="columns">
+    <div class="column has-text-centered" id="xyz">
+      <p class="is-size-3-desktop">{{no_of_users}}</p>
+      <p class="is-size-4-desktop">Użytkowników</p>
+    </div>
+    <div class="column has-text-centered">
+      <p class="is-size-3-desktop">{{no_of_offers}}</p>
+      <p class="is-size-4-desktop">Pojazdów w naszej bazie</p>
+    </div>
+  </div>
+  <br /><br />
+</section>
+<br /><br />
+<section class="info-about-app offer-adder is-fullheight">
+  <div class="columns">
+    <div class="column has-text-centered is-two-fifths is-desktop" id="xyz">
+      <p class="is-size-1-desktop is-size-2-tablet">Jak to działa?</p>
+      <br />
+      <p class="is-size-2-desktop is-size-2-tablet" id="step-one">Krok 1.</p>
+      <p class="is-size-3-desktop is-size-2-tablet">wystaw pojazd</p>
+      <p class="is-size-4-desktop is-size-3-tablet">(bez żadnych kosztów)</p>
+      <br />
+      <i class="fas fa-angle-double-down fa-2x"></i>
+      <br /><br />
+      <p class="is-size-2-desktop is-size-2-tablet">Krok 2.</p>
+      <p class="is-size-3-desktop is-size-2-tablet">czekaj na oferty komisów</p>
+      <br />
+      <i class="fas fa-angle-double-down fa-2x"></i>
+      <br />
+      <br />
+      <p class="is-size-2-desktop is-size-2-tablet">Krok 3.</p>
+      <p class="is-size-3-desktop is-size-2-tablet">
+        zaakceptuj wybraną ofertę
+      </p>
     </div>
 
-    </div>
+    <div class="column is-three-fifths">
+      <div class="columns">
+        <div class="column"></div>
+        <div class="column is-half offer-main">
+          <form action="" method="post">
+            {% csrf_token %}
+          <p class="is-size-1-desktop is-size-2-tablet has-text-centered">
+            Wystaw pojazd
+          </p>
+          <br>
+          <div class="field">
+            <label for="{{ form.price.id_for_label }}" class="label">
+              Cena
+            </label>
+            <div class="control">
+              <input
+                class="input "
+                type="number"
+                placeholder="wskaż cenę"
+                name="price"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="field">
+            <label for="{{ form.car_brand.id_for_label }}" class="label">
+              Marka
+            </label>
+            <div class="control">
+              <input
+                class="input "
+                type="text"
+                placeholder="wskaż markę pojazdu"
+                name="car_brand"
+              />
+            </div>
+          </div>
 
-    </section>
-    {% endfor %}
+          <div class="field">
+            <label for="{{ form.car_model.id_for_label }}" class="label">
+              Model
+            </label>
+            <div class="control">
+              <input
+                class="input "
+                type="text"
+                placeholder="wskaż model pojazdu"
+                name="car_model"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="field">
+            <label for="{{ form.engine_capacity.id_for_label }}" class="label">
+                        pojemność silnika
+            </label>
+        <div class="control">
+            <input class="input " type="number" placeholder="wskaż pojemność silnika w cm3"  name="engine_capacity" value="{{engine_capacity}}">
+        </div>
+        </div>
+        <br>
+  
+        <div class="field">
+           <label for="{{ form.year_of_production.id_for_label }}" class="label">
+                        rok produkcji
+           </label>
+          <div class="control">
+            <input class="input " type="number" placeholder="wskaż rok produkcji pojazdu"  name="year_of_production" value="{{year_of_production}}">
+          </div>
+        </div>
+         <br>
+          <button class="button">Dalej</button>
+        </form>
+        </div>
+        <div class="column"></div>
+      </div>
+    </div>
+  </div>
+  
+</section>
+<br><br>
+
+<!-- <Section class="is-fullheight">
+<br><br><br>
+<div class="columns">
+  
+  <div class="column is-two-fifths ">
+    <p class="is-size-1-desktop is-size-2-tablet">Inni wystawili</p>
+    <div id='slider-index'>
+      <div class="bxslider">
+        {% for offer in offer_sample %}
+        <a href={% url 'offer-details' offer.id %}> <img src="{{offer.photos.url}}" width="100%" alt="mapa" target="_blank"> </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="column is-three-fifths contact-main is-fullheight has-text-centered">
+    <p class="is-size-1-desktop is-size-2-tablet">Skontaktuj się z nami</p>
     
-    <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
-        {% if r.has_previous %}
-            <a class="pagination-previous" href="?page={{ r.previous_page_number }}">poprzednia strona</a>
-        {% endif %}
-        {% if r.has_next %}
-        <a class="pagination-next" href="?page={{ r.next_page_number }}">następna strona</a>
-        {% endif %}
-        <ul class="pagination-list">
-          {% if r.previous_page_number == 1 or r.number == 1 %}
 
-          {% else %}  
-          <li><a class="pagination-previous" href="?page=1">1</a></li>
-          <li><span class="pagination-ellipsis">&hellip;</span></li>
-          {% endif %}
-          {% if r.has_previous %}
-          <li><a class="pagination-link" href="?page={{ r.previous_page_number }} aria-label="{{ r.previous_page_number }}">{{ r.previous_page_number }}</a></li>
-          {% endif %}
-          <li><a class="pagination-link is-current" aria-label="{{ r.number }}" aria-current="page">{{ r.number }}</a></li>
-          {% if r.has_next %}
-          <li><a class="pagination-link" href="?page={{ r.next_page_number }}" aria-label="{{ r.next_page_number }}">{{ r.next_page_number }}</a></li>
-          {% endif %}
-          {% if r.next_page_number == r.paginator.num_pages or r.number == r.paginator.num_pages %}
+  </div>
+  
+</div>
 
-          {% else %}
-          <li><span class="pagination-ellipsis">&hellip;</span></li>
-          <li><a class="pagination-previous" href="?page={{page_obj.paginator.num_pages}}">{{r.paginator.num_pages}}</a></li>
-          {% endif %}
-          
-        </ul>
-      </nav>
-    
-{% endblock content %} 
+</Section> -->
+
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+    </p>
+  </div>
+</footer>
+
+
+
+{% endblock content %}

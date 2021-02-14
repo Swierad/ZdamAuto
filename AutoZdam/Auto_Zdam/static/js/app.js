@@ -1,5 +1,7 @@
 
 
+// Slider
+
 $(function(){
   $('.bxslider').bxSlider({
     mode: 'fade',
@@ -8,6 +10,8 @@ $(function(){
   });
 });
 
+
+// burger menu
 
 $(function(){
         var burger = document.querySelector('.burger');
@@ -18,3 +22,5 @@ $(function(){
             nav.classList.toggle('is-active');
         });
     })
+
+

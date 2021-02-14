@@ -1,0 +1,67 @@
+<form action="" method="get">
+
+{% extends "base.html" %}
+
+{% block content %}
+{% csrf_token %}
+<br>
+<div class='mx-6'>
+    <form method = "get">
+        {{ offerFilter.form}}
+        <input type="submit" value="szukaj">
+    </form>
+    <br>
+    <br>
+    {% for i in r %}
+
+
+
+    <div class="columns is-mobile">
+    <div class="column is-half-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+        <a href={% url 'offer-details' i.id %}><img src="{{i.photos.url}}" width="100%" alt="mapa"> </a>
+
+    </div>
+    <div class="column">
+        <a href={% url 'offer-details' i.id %} class='is-size-7-mobile'> &nbsp&nbsp {{i.car_brand}} {{ i.car_model }} <br> &nbsp&nbsp Cena: {{i.price}} PLN <br> &nbsp&nbsp rocznik: {{ i.year_of_production }} <br> &nbsp&nbsp lokalizacja: {{ i.user.wherefrom}} <br> &nbsp&nbsp przebieg: {{ i.car_mileage }}&nbspkm <br> &nbsp&nbsp pojemność:{{ i.engine_capacity }}&nbspcm3 <br>&nbsp&nbsp rodzaj paliwa: {{ i.get_fuel_type_display }} </a>
+    </div>
+    <div class="column visibility-desktop is-hidden-touch">
+        <a> opis: <br> {{ i.description }}</a>
+    </div>
+
+    </div>
+
+    </section>
+    {% endfor %}
+
+    <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+        {% if r.has_previous %}
+            <a class="pagination-previous" href="?page={{ r.previous_page_number }}">poprzednia strona</a>
+        {% endif %}
+        {% if r.has_next %}
+        <a class="pagination-next" href="?page={{ r.next_page_number }}">następna strona</a>
+        {% endif %}
+        <ul class="pagination-list">
+          {% if r.previous_page_number == 1 or r.number == 1 %}
+
+          {% else %}
+          <li><a class="pagination-previous" href="?page=1">1</a></li>
+          <li><span class="pagination-ellipsis">&hellip;</span></li>
+          {% endif %}
+          {% if r.has_previous %}
+          <li><a class="pagination-link" href="?page={{ r.previous_page_number }} aria-label="{{ r.previous_page_number }}">{{ r.previous_page_number }}</a></li>
+          {% endif %}
+          <li><a class="pagination-link is-current" aria-label="{{ r.number }}" aria-current="page">{{ r.number }}</a></li>
+          {% if r.has_next %}
+          <li><a class="pagination-link" href="?page={{ r.next_page_number }}" aria-label="{{ r.next_page_number }}">{{ r.next_page_number }}</a></li>
+          {% endif %}
+          {% if r.next_page_number == r.paginator.num_pages or r.number == r.paginator.num_pages %}
+
+          {% else %}
+          <li><span class="pagination-ellipsis">&hellip;</span></li>
+          <li><a class="pagination-previous" href="?page={{page_obj.paginator.num_pages}}">{{r.paginator.num_pages}}</a></li>
+          {% endif %}
+
+        </ul>
+      </nav>
+
+{% endblock content %}

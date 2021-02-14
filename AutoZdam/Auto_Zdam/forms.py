@@ -131,3 +131,8 @@ class ContactForm(forms.Form):
     description = forms.CharField(label='wiadomość', widget=forms.Textarea)
     price = forms.CharField(label='proponowana cena')
 
+class ContactAutoZdamForm(forms.Form):
+    description = forms.CharField(label='treść wiadomości', widget=forms.Textarea)
+    user_email = forms.CharField(label='Twój Email')
+    
+
